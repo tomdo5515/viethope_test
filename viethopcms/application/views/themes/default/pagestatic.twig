@@ -1,0 +1,35 @@
+{% extends '/_layouts/one_col.twig' %} 
+
+{% block CONTENT %}
+
+<section class="row cover-background" style="background-image: url({{article['thumbnail']}});">
+    {# <h4><span>{{term_parent['term_name']}}</span></h4>
+    <h3>MDP</h3> 
+    <h1>{{article['article_title']}}</h1> #}
+</section>
+
+<section class="row">
+    <div class="article-container">
+        <div class="col-12">
+            <div class="jbreadcrumb text-left mb-3">
+                <a href="/">Home</a> / 
+                <span>{{term_parent['term_name']}}</span>
+            </div>
+            {# <h3>MDP</h3>  #}
+            <h1 class="text-left mb-3 text-uppercase">{{article['article_title']}}</h1>
+        </div>
+    </div>
+</section>
+<section class="row">
+    {% autoescape %}
+        {% if article['article_content'] == '' %}
+        <div class="container">
+            comming soon!
+        </div>
+        {% else %}
+        {{article['article_content'] | raw}}
+        {% endif %}
+    {% endautoescape %}
+</section>
+
+{% endblock %}

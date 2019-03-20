@@ -1,0 +1,14 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^cicore.local$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.cicore.local$
+RewriteCond %{REQUEST_URI} !assets/
+RewriteRule (.*) /assets/$1 [L]
+
+# deny access to the application directory
+RewriteRule ^application/?  - [F]
+
+RewriteRule ^(grocery_crud\/(.*\.(css|js|png|jpg|woff|json)))$ /assets/$1 [NC,L]
+RewriteRule ^(themes\/(.*\.(css|js|png|jpg|woff|woff2)))$ /assets/$1 [NC,L]
+RewriteRule ^(uploads\/(.*\.(png|jpg)))$ /assets/$1 [NC,L]
+
+RewriteRule ^(.*)$ /assets/index.php/$1 [L,QSA]

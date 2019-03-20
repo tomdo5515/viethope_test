@@ -1,0 +1,19 @@
+{% extends _layout %}
+
+{% block CONTENT %}
+
+	{{output}}
+
+{% endblock %}
+
+
+{% block SCRIPTS %}
+  {% for csf in css_files %}
+    <link rel="stylesheet" href="{{csf}}">
+  {% endfor %}
+
+  {% for jsf in js_files %}
+    <script type="text/javascript" src="{{jsf}}"></script>
+  {% endfor %}
+
+{% endblock %}

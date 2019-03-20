@@ -1,0 +1,30 @@
+footer{
+    h6{
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        color: #333333;
+        margin-bottom: 1.3rem;
+    }
+    ul{
+        li{
+            margin-bottom: 0.35rem;
+        }
+    }
+    font-size: 0.8rem;
+    a{
+        color: #333333;
+    }
+    .copyright{
+        a{
+            color: #00a651;
+            margin-bottom: 0.5rem;
+        }
+        p{
+            margin-top: 1rem;
+        }
+        h6, p.address{
+            margin-bottom: 0.2rem;
+            margin-top: 0rem;
+        }
+    }
+}

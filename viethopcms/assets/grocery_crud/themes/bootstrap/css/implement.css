@@ -1,0 +1,42 @@
+.form-inline .form-control{
+	width: 100%;
+}
+
+.form-inline input.form-control{
+	font-size: 11px;
+}
+
+.small-loading{
+	display: none;
+}
+
+.pagination span.input-group-sm{
+	padding: 0px;
+	width: 60px;
+}
+.floatL{
+	float: left;
+	margin-right: 5px;
+}
+.floatR{
+	float: right;
+	margin-left: 5px;
+}
+
+.footer-tools{
+	margin: 30px 0px;
+    line-height: 30px;
+}
+
+.footer-tools .pagination{
+	margin: 0px 10px;
+}
+
+td.actions .dropdown-menu a, td.actions .dropdown-menu i {
+	font-size: 12px;
+	padding: 5px 10px;
+}
+
+.subject h3{
+	font-size: 1.8em;
+}

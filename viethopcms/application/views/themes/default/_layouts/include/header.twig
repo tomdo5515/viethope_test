@@ -1,0 +1,50 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/png" href="/themes/frontend/images/favicon.png"/>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,700,700i,900,900i&amp;subset=vietnamese" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/themes/frontend/lib/owl.carousel/assets/owl.carousel.min.css?v=2.3.4">
+    <link rel="stylesheet" href="/themes/frontend/lib/owl.carousel/assets/owl.theme.default.min.css?v=2.3.4">
+
+    <link rel="stylesheet" href="/themes/frontend/styles/style.css?v=6.5.1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/themes/frontend/lib/owl.carousel/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+    crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+    <title>{{title}}</title>
+
+    {% if seo %}
+        {% for row in seo %}
+            <meta name="{{row['meta_key']}}" content="{{row['meta_value']}}" />
+            <meta property="og:{{row['meta_key']}}" content="{{row['meta_value']}}" />
+        {% endfor %}
+    {% else %}
+        {% for seo_default in meta_seo_default %}
+            {{seo_default['option_value']}}
+        {% endfor %}
+    {% endif %}
+
+    {# meta global #}
+    {% if meta_global %}
+        {% for global in meta_global %}
+            {{global['option_value']}}
+        {% endfor %}
+    {% endif %}
+    {# meta #}
+    <meta property="og:image" content="/themes/frontend/images/logo300x300.png" />
+    <meta property="og:url" content="{{current_url()}}" />
+    {#<!-- facebook -->
+    <meta property="og:type"          content="website" />
+    <meta property="og:title"         content="Your Website Title" />
+    <meta property="og:description"   content="Your description" />
+    <meta property="og:image"         content="http://www.your-domain.com/path/image.jpg" />
+    <!-- end facebook -->#}
+    
+</head>

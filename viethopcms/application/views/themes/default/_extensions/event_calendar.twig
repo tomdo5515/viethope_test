@@ -1,0 +1,94 @@
+{% if events|length >0 %}
+<section class="wrapper-event-calendar">
+    <style type="text/css">
+        .wrapper-event-calendar h3{
+            font-weight: 700;
+            margin-bottom: 1.1rem;
+        }
+
+        .table-responsive .date{
+            width: 90px;
+        }
+
+        .table-responsive .time{
+            width: 90px;
+            text-transform: uppercase;
+        }
+
+        .table-responsive .time span{
+            display: inline-block;
+            width: 1rem;
+            height: 1rem;
+            background: #9dc73c;
+            border-radius: 1rem;
+            margin-right: 5px;
+        }
+
+        .table-responsive .old .time span{
+            background: #9a9e8f;
+        }
+
+        .table-responsive .description h6{
+            color: #4c893a;
+            font-weight: bold;
+        }
+
+        .table-responsive .description a{
+            color: #212529;
+        }
+
+        .table td{
+            border-top: none;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        @media (min-width: 576px){
+        }
+        
+        @media (min-width: 768px){
+        }
+
+        @media (min-width: 992px){
+        }
+
+        @media (min-width: 1400px){
+        }
+
+    </style>
+
+    <h3 class="text-uppercase">Event Calendar</h3>
+
+    <div class="table-responsive">
+        <table align="left" border="0" cellpadding="1" cellspacing="1" class="table">
+            <tbody>
+                {% for ev in events %}
+                {% if ev['new'] %}
+                <tr>
+                    <td class="date">{{ev['event_date']|date('D')}} <br> {{ev['event_date']|date('M d')}}</td>
+                    <td class="time"><span></span> {{ev['event_date']|date('h A')}}</td>
+                    <td class="description">
+                        <a href="/news/{{ev['article_slug']}}-{{ev['id']}}" title="{{ev['article_title']}}">
+                            <h6>{{ev['article_title']}}</h6> 
+                            {{ev['article_description']}}
+                        </a>
+                    </td>
+                </tr>
+                {% else %}
+				<tr class="old">
+                    <td class="date">{{ev['event_date']|date('D')}} <br> {{ev['event_date']|date('M d')}}</td>
+                    <td class="time"><span></span> {{ev['event_date']|date('h A')}}</td>
+                    <td class="description">
+                        <a href="/news/{{ev['article_slug']}}-{{ev['id']}}" title="{{ev['article_title']}}">
+                            <h6>{{ev['article_title']}}</h6> 
+                            {{ev['article_description']}}
+                        </a>
+                    </td>
+                </tr>
+                {% endif %}
+                
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endif %}

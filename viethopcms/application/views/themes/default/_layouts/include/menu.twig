@@ -1,0 +1,180 @@
+<div class="d-block d-sm-block d-md-block d-lg-none row">
+    <nav id="header_menu" class="navbar navbar-light light-blue lighten-4 navbar-menu">
+        <div class="nav-item mobile-donate-item">
+            <a class="" href="/donate-23">Donate</a>
+        </div>
+        <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span></button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                {% for menu in menus %}
+                    {% if menu.hyperlink %}
+                        {% set dhyperlink = menu.hyperlink %}
+                    {% else %}
+                        {% set dhyperlink = '/'~menu.slug~'-'~menu.id %}
+                    {% endif %}
+                    <li class="nav-item dropdown">
+                        {% if menu.children|length > 0 %}
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">{{menu.text}}</a>
+                            <div class="navbar-dropdown dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for child in menu.children %}
+                                {% if child.hyperlink %}
+                                    {% set dsubhyperlink = child.hyperlink %}
+                                {% else %}
+                                    {% set dsubhyperlink = '/'~menu.slug~'-'~menu.id~'/'~child.slug~'-'~child.id %}
+                                {% endif %}
+                                <a href="{{dsubhyperlink}}">{{child.text}}</a>
+                            {% endfor %}
+                            </div>
+                        {% else %}
+                            <a class="nav-link" href="{{dhyperlink}}">{{menu.text}}</a>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Login</a>
+                </li>
+                <li class="nav-item dropdown search-item">
+                    <div class="navbar-dropdown" aria-labelledby="navbarDropdown">
+                        <div id="imaginary_container"> 
+                            <div class="input-group stylish-input-group">
+                                <input type="text" class="searchkey form-control"  placeholder="Search" >
+                                <span class="input-group-addon">
+                                    <button class="searchsubmit" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item language-item">
+                    {% if language == 'english' %}
+                        <a class="nav-link" href="/vn/home"><i class="flag flag-vn"></i>Tiếng việt</a>
+                    {% else %}
+                        <a class="nav-link" href="/en/home"><i class="flag flag-us"></i>English</a>
+                    {% endif %}
+                </li>
+                <li class="nav-item">
+                    <div class="d-flex pl-3">
+                        <div class="social-item facebook">
+                            <a target="_blank" href="https://www.facebook.com/VietHopeInc/">
+                            </a>
+                        </div>
+                        <div class="social-item youtube">
+                            <a target="_blank" href="https://www.youtube.com/channel/UCqB7AQRKkIMKl0nyRwtvZtw">
+                            </a>
+                        </div>
+                        <div class="social-item rss">
+                            <a target="_blank" href="/feed" title="RSS"></a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<script type="text/javascript">
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+      if (prevScrollpos > currentScrollPos) {
+        document.getElementById("header_menu").style.top = "0";
+      } else if(currentScrollPos > 40 && !$('#navbarSupportedContent1').hasClass('show')) {
+        document.getElementById("header_menu").style.top = "-38px";
+      }
+      prevScrollpos = currentScrollPos;
+    }
+</script>
+<div class="top-fixed d-none d-sm-none d-md-none d-lg-flex">
+    <div class="home-container navbar-expand open-menu">
+    	<header class="">
+    		<div class="row">
+    			<div class="col-md-2">
+		            <div id="logo">
+		                <div class="navbar-brand">
+		                    <a href="/" title="{{title}}">
+		                        <img src="/themes/frontend/images/logo150x150.png" alt="{{title}}">
+		                        <span class="before"></span>
+		                        <span class="after"></span>
+		                    </a>
+		                </div>
+		            </div>
+	        	</div>
+	        	<div class="col-md-6">
+		            <ul class="navbar-nav">
+		                {% for menu in menus if menu.id != 23 %}
+		                    {% if menu.hyperlink %}
+		                        {% set hyperlink = menu.hyperlink %}
+		                    {% else %}
+		                        {% set hyperlink = '/'~menu.slug~'-'~menu.id %}
+		                    {% endif %}
+		                    {% if menu.id==current_id %}
+		                        {% set active = 'active' %}
+		                    {% else %}
+		                        {% set active = '' %}
+		                    {% endif %}
+		                    {% if menu.children|length > 0 %}
+		                    <li class="nav-item hover-item dropdown {{active}}">
+		                        <a class="dropdown-toggle" href="{{hyperlink}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+		                            {{menu.text}}
+		                        </a>
+		                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+		                        	<div class="dropdown-sub-menu">
+				                        {% for child in menu.children %}
+				                            {% if child.hyperlink %}
+				                                {% set subhyperlink = child.hyperlink %}
+				                            {% else %}
+				                                {% set subhyperlink = '/'~menu.slug~'-'~menu.id~'/'~child.slug~'-'~child.id %}
+				                            {% endif %}
+				                            <a class="dropdown-item" href="{{subhyperlink}}">{{child.text}}</a>
+				                        {% endfor %}
+				                    </div>
+		                        </div>
+		                    {% else %}
+		                    <li class="nav-item hover-item {{active}}">
+		                        <a class="" href="{{hyperlink}}">{{menu.text}}</a>
+		                    {% endif %}
+
+		                    </li>
+		                {% endfor %}
+		            </ul>
+	        	</div>
+	        	<div class="col-md-3 offset-md-1">
+	        		<ul class="d-flex flex-row menu-right justify-content-end">
+	        			<li class="nav-item login-item nav-wall">
+		                    <a class="" href="/dashboard">Login</a>
+		                </li>
+		                <li class="nav-item search-item">
+						  <div class="search-wrapper">
+						    <input class="search-input" type="text" placeholder="Search"/>
+					    	<i class="fas fa-search"></i>
+						  </div>
+		                </li>
+		                <li class="nav-item language-item">
+		                    {% if language == 'english' %}
+		                        <a class="" href="/vn/home"><i class="flag flag-vn"></i>Tiếng việt</a>
+		                    {% else %}
+		                        <a class="" href="/en/home"><i class="flag flag-us"></i>English</a>
+		                    {% endif %}
+		                </li>
+		                <li class="nav-item social-item facebook">
+		                    <a target="_blank" href="https://www.facebook.com/VietHopeInc/">
+		                    	<i class="fac-icon"></i>
+		                    </a>
+		                </li>
+		                <li class="nav-item">
+		                	<div class="donate">
+		                		<a class="btn btn-donate" href="/donate-23">Donate</a>
+		                	</div>
+		                </li>
+		            </ul>
+	        	</div>
+	            <!-- end menu -->
+	        </div>
+        </header>
+    </div>
+</div>

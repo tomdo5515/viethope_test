@@ -1,0 +1,6 @@
+# folder
+/.sass-cache
+/application/cache
+#/assets/uploads
+/assets/uploads/cache
+.vscode

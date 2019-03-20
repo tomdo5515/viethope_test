@@ -1,0 +1,154 @@
+<style>
+    /* form */
+	.form-viethope .form-block {
+        background-color: #f3f7fa;
+        height: 100%;
+    }
+    .form-viethope .form-title{
+        padding: 10px 30px;
+        background-color: #14bdd0;
+        color: #fff;
+        text-transform: uppercase;
+    }
+    .form-viethope .form-group-viethope {
+        padding: 20px 30px 10px;
+        margin-bottom: 0;
+    }
+    .form-viethope  .checkbox-other {
+        border-top: 1px solid #fff;
+        padding: 10px 30px 15px;
+    }
+    .form-viethope .form-control {
+        border-radius: 0;
+    }
+    .form-viethope .btn-donate {
+        background-color: #fff200;
+        padding: 5px 50px;
+        font-size: 20px;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 8px 50px;
+        line-height: 1;
+    }
+</style>
+{{form_open('/donate-23', 'class="form-viethope donate-form" id="form-viethope" target="_blank"')}}
+    <input type="hidden" name="xdonate" value="xdonate">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-block">
+                <div class="form-title">SELECT A DONATION AMOUNT</div>
+
+                <div class="form-body">
+                    <div class="form-group form-group-viethope">
+                        <div class="custom-control custom-radio">
+                            <input checked="checked" class="custom-control-input donationcmd" id="donationcmd1" name="donationcmd" type="radio" value="_xclick-subscriptions" /> 
+                            <label class="custom-control-label viethope-control-label" for="donationcmd1">Monthly recurring</label>
+                        </div>
+
+                        <div class="custom-control custom-radio mt-2">
+                            <input class="custom-control-input donationcmd" id="donationcmd2" name="donationcmd" type="radio" value="_donations" /> 
+                            <label class="custom-control-label viethope-control-label" for="donationcmd2">One-Time</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-block">
+                <div class="form-title">Give The Gift of Education</div>
+
+                <div class="form-body subscriptions">
+                    <div class="form-group form-group-viethope">
+                        <div class="custom-control custom-radio"><input class="custom-control-input" id="gifOfEducation1"
+                                name="gifOfEducation" type="radio" value="5" /> <label class="custom-control-label viethope-control-label"
+                                for="gifOfEducation1">Friend of VietHope: $5.00</label></div>
+
+                        <div class="custom-control custom-radio mt-2"><input class="custom-control-input" id="gifOfEducation2"
+                                name="gifOfEducation" type="radio" value="10" /> <label class="custom-control-label viethope-control-label"
+                                for="gifOfEducation2">Merit Scholar Sponsor: $10.00</label></div>
+
+                        <div class="custom-control custom-radio mt-2"><input checked="checked" class="custom-control-input"
+                                id="gifOfEducation3" name="gifOfEducation" type="radio" value="17" /> <label class="custom-control-label viethope-control-label"
+                                for="gifOfEducation3">USP Scholar Sponsor: $17.00</label></div>
+
+                        <div class="custom-control custom-radio mt-2"><input class="custom-control-input" id="gifOfEducation4"
+                                name="gifOfEducation" type="radio" value="100" /> <label class="custom-control-label viethope-control-label"
+                                for="gifOfEducation4">VietHope Ambassador: $100</label></div>
+                    </div>
+
+                    <div class="form-group checkbox-other">
+                        <div class="custom-control custom-radio mb-2">
+                        <input class="custom-control-input" id="gifOfEducation5"
+                                name="gifOfEducation" type="radio" value="other" /> <label class="custom-control-label viethope-control-label"
+                                for="gifOfEducation5">Other</label>
+                        </div>
+                        <input name="other" aria-describedby="other" class="form-control otherinput" placeholder="other" type="text" />
+                    </div>
+                </div>
+
+                <div class="form-body donations d-none">
+                    <div class="form-group form-group-viethope">
+                        <div class="custom-control custom-radio"><input class="custom-control-input" id="gifOfEducation6"
+                                name="gifOfEducation1" type="radio" value="50" /> <label class="custom-control-label viethope-control-label"
+                                for="gifOfEducation6">Friend of VietHope: $50.00</label></div>
+
+                        <div class="custom-control custom-radio mt-2"><input class="custom-control-input" id="gifOfEducation7"
+                                name="gifOfEducation1" type="radio" value="120" /> <label class="custom-control-label viethope-control-label"
+                                for="gifOfEducation7">Merit Scholar Sponsor: $120.00</label></div>
+
+                        <div class="custom-control custom-radio mt-2"><input class="custom-control-input" checked="checked"
+                                id="gifOfEducation8" name="gifOfEducation1" type="radio" value="200" /> <label class="custom-control-label viethope-control-label"
+                                for="gifOfEducation8">USP Scholar Sponsor: $200.00</label></div>
+
+                        <div class="custom-control custom-radio mt-2"><input class="custom-control-input" id="gifOfEducation9"
+                                name="gifOfEducation1" type="radio" value="1200" /> <label class="custom-control-label viethope-control-label"
+                                for="gifOfEducation9">VietHope Ambassador: $1200</label></div>
+                    </div>
+
+                    <div class="form-group checkbox-other">
+                        <div class="custom-control custom-radio mb-2">
+                            <input class="custom-control-input" id="gifOfEducation10"
+                                name="gifOfEducation1" type="radio" value="other" /> <label class="custom-control-label viethope-control-label"
+                                for="gifOfEducation10">Other</label>
+                        </div>
+                        <input name="other1" aria-describedby="other" class="form-control otherinput" placeholder="other" type="text" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center btn-block mt-4"><button class="btn btn-donate" type="submit">Donate</button></div>
+
+    <div class="card-block text-center mt-3"><a href="" title=""> <img alt="Visa" src="/uploads/images/icon-visa.png" />
+        </a> <a href="" title=""> <img alt="Visa" src="/uploads/images/icon-mastercard.png" /> </a> <a href="" title="">
+            <img alt="Visa" src="/uploads/images/icon-discover.png" /> </a> <a href="" title=""> <img alt="Visa" src="/uploads/images/icon-card.png" />
+        </a>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function(){
+        $('.donate-form').on('change', '.donationcmd', function() {
+            if(this.checked) {
+                if($(this).val()=='_xclick-subscriptions'){
+                    $('.donations').addClass('d-none');
+                    $('.donations').removeClass('d-block');
+
+                    $('.subscriptions').removeClass('d-none');
+                    $('.subscriptions').addClass('d-block');
+                }
+
+                if($(this).val()=='_donations'){
+                    $('.subscriptions').removeClass('d-block');
+                    $('.subscriptions').addClass('d-none');
+                    
+                    $('.donations').removeClass('d-none');
+                    $('.donations').addClass('d-block');
+                    
+                }
+            }
+        });
+    });
+</script>

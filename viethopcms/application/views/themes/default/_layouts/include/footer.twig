@@ -1,0 +1,231 @@
+<section class="row subscribe">
+    <div class="container">
+        <div class="col-md-10 offset-md-1">
+            <div class="row">
+                <div class="col-md-5 text">
+                    <h5>Get Our Newsletter To Stay Up To Date</h5>
+                </div>
+                <div class="col-md-7">
+                    <form action="" method="post">
+                        <div class="input-group input-group">
+                            <input type="text" class="form-control subscribe_email" placeholder="input your email">
+                            <div class="input-group-append">
+                                <input id="subscribe_submit" class="btn" type="button" value="Subscribe">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $(document).ready(function(){
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        $("input.subscribe_email").on('keydown', function (e) {
+            if (e.keyCode == 13) {
+                // Do something
+                var subscribe_email = $(this).val();
+                if(!re.test(String(subscribe_email).toLowerCase()))
+                {
+                    swal("Opp!", "email invaild!", "warning");
+                }
+                else{
+                    $.ajax({
+                        url: "{{base_url}}mail/subscribe/" + subscribe_email,
+                    }).done(function(data) {
+                        if(data.status=="subscribed" || data.status==0 || data.status==400){
+                            swal("{{lang('subscribing_popup')}}", "{{lang('subscribing_popup_detail')}}", "success");
+                            $('input.subscribe_email').val('');
+                        }
+                        else
+                        {
+                            swal("Opp!", "internal error!", "warning");
+                        }
+                    });
+                }
+                console.log(subscribe_email);
+                return false;
+            }
+        });
+        $('#subscribe_submit').on('click', function () {
+            // $(this).toggleClass("open-menu");
+            var subscribe_email = $('input.subscribe_email').val();
+            if(!re.test(String(subscribe_email).toLowerCase()))
+            {
+                swal("Opp!", "email invaild!", "warning");
+            }
+            else{
+                $.ajax({
+                    url: "{{base_url}}mail/subscribe/" + subscribe_email,
+                }).done(function(data) {
+                    if(data.status=="subscribed" || data.status==0 || data.status==400){
+                        swal("{{lang('subscribing_popup')}}", "{{lang('subscribing_popup_detail')}}", "success");
+                        $('input.subscribe_email').val('');
+                    }
+                    else
+                    {
+                        swal("Opp!", "internal error!", "warning");
+                    }
+                });
+            }
+            console.log(subscribe_email);
+        })
+    });
+</script>
+<!-- end block content -->
+<div class="row footer">
+    <section class="home-container">
+        <footer>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row d-none d-sm-none d-md-none d-lg-flex">
+                        <div class="col-lg-1">
+                            <img src="/themes/frontend/images/logo150x150.png" alt="" srcset="" width="60px">
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="footer-info-single">
+                                <h6 class="title">Our Programs</h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="/our-programs-2/merit-development-program-14" title="Merit Development Program (MDP)">Merit Development Program (MDP)</a></li>
+                                    <li><a href="/our-programs-2/university-scholarship-program-15" title="University Scholarship Program (USP)">University Scholarship Program (USP)</a></li>
+                                    <li><a href="/our-programs-2/youth-development-program-16" title="Youth Development Program (YDP)">Youth Development Program (YDP)</a></li>
+                                    <li><a href="/our-programs-2/youth-workshop-program-17" title="Youth Workshop Program">Youth Workshop Program (YWP)</a></li>
+                                    <li><a href="/our-programs-2/alumni-development-program-18" title="Alumni Development Program">Alumni Development Program (ADP)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2">
+                            <div class="footer-info-single">
+                                <h6 class="title">NEWS</h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="/latest-news" title="Lastest News">Latest News</a></li>
+									<li><a href="/meet-our-scholars" title="Meet Our Scholars">Meet Our Scholars</a></li>
+                                    <li><a href="/newsletter" title="President's Letter">President's Letter</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="footer-info-single">
+                                <h6 class="title">About VietHope</h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="/about-viethope-4/mission-strategy-6" title="Mission & Strategy">Mission & Strategy</a></li>
+                                    <li><a href="/about-viethope-4/operating-model-7" title="Operating Model">Operating Model</a></li>
+                                    <li><a href="/about-viethope-4/transparency-8" title="Transparency">Transparency</a></li>
+                                    <li><a href="/about-viethope-4/board-of-directors-9" title="Board of Directors">Board of Directors</a></li>
+                                    <li><a href="/about-viethope-4/staff-10" title="Staffs">Staffs</a></li>
+                                    <li><a href="/about-viethope-4/faqs-11" title="FAQs">FAQs</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-3">
+                            <div class="footer-info-single">
+                                <h6 class="title">Get Involved</h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="/get-involved-5/volunteer-19" title="Volunteer Opportunities">Volunteer Opportunities</a></li>
+                                    <li><a target="_blank" href="https://goo.gl/forms/HIqrMKmiL2cD6Pwv2" title="Registration form">Registration form</a></li>
+                                    <li><a href="/fundraising-event-21/fundraising-event-21" title="Fundraising Event">Fundraising Event</a></li>
+                                    <li><a href="/sponsors-list-24/sponsors-list-24" title="Sponsors List">Sponsors List</a></li>
+                                    <li><a href="/get-involved-5/partnership-26" title="Partnership">Partnership</a></li>
+                                    <li><a href="/contact" title="Contact">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex d-sm-flex d-md-flex d-lg-none">
+                        <div class="col-sm-2">
+                            <img src="/themes/frontend/images/logo150x150.png" alt="" srcset="" width="60px">
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="footer-info-single">
+                                <h6 class="title">Our Programs</h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="/our-programs-2/merit-development-program-14" title="Merit Development Program (MDP)">Merit Development Program (MDP)</a></li>
+                                    <li><a href="/our-programs-2/university-scholarship-program-15" title="University Scholarship Program (USP)">University Scholarship Program (USP)</a></li>
+                                    <li><a href="/our-programs-2/youth-development-program-16" title="Youth Development Program (YDP)">Youth Development Program (YDP)</a></li>
+                                    <li><a href="/our-programs-2/youth-workshop-program-17" title="Youth Workshop Program">Youth Workshop Program (YWP)</a></li>
+                                    <li><a href="/our-programs-2/alumni-development-program-18" title="Alumni Development Program">Alumni Development Program (ADP)</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="footer-info-single">
+                                <h6 class="title">NEWS</h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="/latest-news" title="Lastest News">Latest News</a></li>
+                                    <li><a href="/meet-our-scholars" title="Meet Our Scholars">Meet Our Scholars</a></li>
+                                    <li><a href="/newsletter" title="President's Letter">President's Letter</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex d-sm-flex d-md-flex d-lg-none">
+                        <div class="col-sm-5 offset-sm-2">
+                            <div class="footer-info-single">
+                                <h6 class="title">About VietHope</h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="/about-viethope-4/mission-strategy-6" title="Mission & Strategy">Mission & Strategy</a></li>
+                                    <li><a href="/about-viethope-4/operating-model-7" title="Operating Model">Operating Model</a></li>
+                                    <li><a href="/about-viethope-4/transparency-8" title="Transparency">Transparency</a></li>
+                                    <li><a href="/about-viethope-4/board-of-directors-9" title="Board of Directors">Board of Directors</a></li>
+                                    <li><a href="/about-viethope-4/staff-10" title="Staffs">Staffs</a></li>
+                                    <li><a href="/about-viethope-4/faqs-11" title="FAQs">FAQs</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-5">
+                            <div class="footer-info-single">
+                                <h6 class="title">Get Involved</h6>
+                                <ul class="list-unstyled">
+                                    <li><a href="/get-involved-5/volunteer-19" title="Volunteer Opportunities">Volunteer Opportunities</a></li>
+                                    <li><a target="_blank" href="https://goo.gl/forms/HIqrMKmiL2cD6Pwv2" title="Registration form">Registration form</a></li>
+                                    <li><a href="/fundraising-event-21/fundraising-event-21" title="Fundraising Event">Fundraising Event</a></li>
+                                    <li><a href="/sponsors-list-24/sponsors-list-24" title="Sponsors List">Sponsors List</a></li>
+                                    <li><a href="/get-involved-5/partnership-26" title="Partnership">Partnership</a></li>
+                                    <li><a href="/contact" title="Contact">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row copyright">
+                        <div class="offset-sm-2 col-sm-4 col-md-4 offset-lg-1">
+                            <h6>VIETHOPE</h6>
+                            <p class="address">USA: 340 S Lemon Ave #9666 Walnut</p>
+                            <p class="address">CA 91789, USA</p>
+                            <p class="address">VIETNAM: 11 Le Ngo Cat St., Dist. 3</p>
+                            <p class="address">Ho Chi Minh City, Vietnam</p>
+                            <a href="mailto:info@viethope.org">info@viethope.org</a>
+                            <p>© 2018 VietHope - Site by eCreation</p>
+                        </div>
+                        <div class="offset-sm-1 col-sm-4 col-lg-4 offset-lg-1 mt-3">
+                            <ul class="list-inline">
+                                <li class="list-inline-item social-item facebook">
+                                    <a target="_blank" href="https://www.facebook.com/VietHopeInc/">
+                                    </a>
+                                </li>
+                                <li class="list-inline-item social-item youtube">
+                                    <a target="_blank" href="https://www.youtube.com/channel/UCqB7AQRKkIMKl0nyRwtvZtw">
+                                    </a>
+                                </li>
+                                <li class="list-inline-item social-item rss">
+                                    <a target="_blank" class="" href="/feed" title="RSS">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="offset-sm-2 offset-md-1 offset-lg-0 col-lg-4">
+                    <div class="fb-page" data-small-header="true" data-tabs="timeline" data-href="https://www.facebook.com/VietHopeInc"
+                        data-width="400" data-height="300" data-hide-cover="false"></div>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>

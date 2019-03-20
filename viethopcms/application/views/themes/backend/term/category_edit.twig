@@ -1,0 +1,135 @@
+{% extends _layout %}
+
+{% block CONTENT %}
+
+    <div class="page-title">
+        <div>
+            <h1><i class="fa fa-edit"></i> Edit menu</h1>
+            <p></p>
+        </div>
+        <div>
+            <ul class="breadcrumb">
+                <li><i class="fa fa-home fa-lg"></i></li>
+                <li><a href="/dashboard/term">menu</a></li>
+                <li>Edit menu</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="row">
+        <form id="terms_post" >
+            <div class="col-md-9">
+
+                <div class="card">
+                    <div class="card-body">
+                        <label class="control-label">Language</label>
+                        <div class="form-group">
+                            <div class="form-group form-group-sm">
+                                <select name="post_language" class="form-control selectpicker post_language" data-live-search="true" >
+                                {% for langs in languages %}
+                                    {# {% if default_language == langs['language_code'] %} #}
+                                    {% if article['language_code'] == langs['language_code'] %}
+                                        <option value="{{langs['language_code']}}" selected>{{langs['name']}}</option>
+                                    {% else %}
+                                        <option value="{{langs['language_code']}}">{{langs['name']}}</option>
+                                    {% endif %}
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Menu name</label>
+                            <input name="post_term_name" class="post_term_name form-control" type="text" placeholder="Menu title input here" value="{{term['term_name']}}">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Menu slug</label>
+                            <input name="post_term_slug" class="post_term_slug form-control" type="text" placeholder="Option you can custom your link" value="{{term['slug']}}">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Sort</label>
+                            <input name="post_term_order" class="post_term_order form-control" type="text" placeholder="Option you can order the same type" value="{{term['term_order']}}">
+                        </div>
+
+                        {# <div class="form-group">
+                            <label class="control-label">Font icon</label>
+                            <input name="post_font_icon" class="post_font_icon form-control" type="text" placeholder="Option you can custom icon use fontawesome">
+                        </div> #}
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h5 class="card-title">SEO Options</h5>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="control-label">Title</label>
+                            <input name="post_seo_title" value="{{seo_title}}" class="form-control post_seo_title" type="text"  maxlength="70">
+                            <p>The title display in search engines is limited to 70 chars. If the SEO title is empty the title will be generated based on your title template in your SEO settings.</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <textarea name="post_seo_description" value="{{seo_description}}" class="form-control post_seo_description" rows="4" maxlength="140">{{seo_description}}</textarea>
+                            <p>The meta description will be limited to 140 chars. If the meta description is empty the description 
+                                will be generated based on your meta description options in your SEO settings.</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Keywords</label>
+                            <input name="post_seo_keywords" value="{{seo_keywords}}" class="post_seo_keywords form-control" type="text" maxlength="1000">
+                            <p>Add search keywords and separate tags with commas (,).</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            {# end col-9 #}
+            <div class="col-md-3">
+                
+                <div class="card">
+                    <h5 class="card-title">Action</h5>
+                    <div class="card-body">
+                        <label class="control-label">Parent</label>
+                        <div id="tree_term" class="form-group">
+                            
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="form-group">
+                            <div id="loading_fa" class="">
+                                <div class="rect1"></div>
+                                <div class="rect2"></div>
+                                <div class="rect3"></div>
+                                <div class="rect4"></div>
+                                <div class="rect5"></div>
+                            </div>
+                        </div>
+                        <input class="post_term_id" type="hidden" name="post_term_id" value="{{term_id}}">
+                        <button id="submit_publish" status="publish" class="update_term btn btn-primary icon-btn" type="button">
+                        <i class="fa fa-paper-plane"></i> Update
+                        </button>
+                        {# <button id="submit_draft" status="draft" class="update_term btn btn-default icon-btn" type="button">Save draft</button> #}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+
+{% block SCRIPTS %}
+<link rel="stylesheet" href="/grocery_crud/plugins/bootstrap-select/css/bootstrap-select.min.css">
+<script type="text/javascript" src="/grocery_crud/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>>
+<script type="text/javascript" src="/grocery_crud/plugins/datepicker/moment.min.js"></script>
+<script type="text/javascript" src="/themes/backend/js/plugins/sweetalert.min.js"></script>
+<script type="text/javascript" src="/themes/backend/js/plugins/bootstrap-typeahead.min.js"></script>
+<link rel="stylesheet" href="/themes/backend/js/plugins/bootstrapvalidator/css/bootstrapValidator.min.css">
+<script type="text/javascript" src="/themes/backend/js/plugins/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+<link rel="stylesheet" href="/themes/backend/js/plugins/gijgo/css/gijgo.min.css">
+<script type="text/javascript" src="/themes/backend/js/plugins/gijgo/js/gijgo.min.js"></script>
+<script type="text/javascript" src="/themes/backend/js/menu.js"></script>
+<script type="text/javascript">
+    var parent_selected = {{term["parent"]}};
+    var disable_all = true;
+</script>
+{% endblock %}

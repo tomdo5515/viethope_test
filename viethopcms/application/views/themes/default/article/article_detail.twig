@@ -1,0 +1,76 @@
+{% extends '/_layouts/one_col.twig' %} 
+
+{% block CONTENT %}
+
+<section class="row cover-background" style="background-image: url(/themes/frontend/images/news-bg.jpg);">
+    {# <h4><span>{{head['menu']}}</span></h4>
+    <h1>{{head['category']}}</h1> #}
+</section>
+<section class="row">
+    <div class="article-container">
+        <div class="col-12">
+            <div class="jbreadcrumb text-left mb-3">
+                <a href="/">Home</a> / 
+                <span>{{head['menu']}}</span>
+            </div>
+            {# <h3>MDP</h3>  #}
+            <h1 class="text-left mb-3 text-uppercase">{{head['category']}}</h1>
+        </div>
+    </div>
+</section>
+<section class="news-detail article-container mb-5">
+    <div class="row statusbar">
+        <div class="col-md-7 col-xl-7 tags">
+            {{article['article_date']|date('d/m/Y')}}
+            {% for tag in article['terms'] if tag['taxonomy'] == 'article_tag' %}
+            {% if loop.first %}
+                | Tags:
+            {% else %}
+            ,
+            {% endif %}<a href="/tag/{{tag['slug']}}" title="{{tag['term_name']}}">{{tag['term_name']}}</a>
+            {% endfor %}
+        </div>
+        <div class="col-md-5 col-xl-5 text-right font-italic">
+            Post by <a href="/author/{{article['username']}}" title="{{article['first_name']}}">{{article['first_name']}} {{article['last_name']}}</a> in 
+            {% for category in article['terms'] if category['taxonomy'] == 'article_category' %}
+            {% if not(loop.first) %}, {% endif %}
+            <a href="/category/{{category['slug']}}" title="{{category['term_name']}}">{{category['term_name']}}</a>
+            {% endfor %}
+        </div>
+        <div class="col-12">
+            <hr>
+        </div>
+    </div>
+    <h2 class="article_title mb-4">{{article['article_title']}}</h2>
+    <div class="content">
+        {{article['article_content']}}
+    </div>
+    <div class="linkbar row">
+        <div class="col-md-12"><hr></div>
+        <div class="col-md-6">
+            {% if near['prev'] %}
+            <a class="btn" href="/news/{{near['prev']['article_slug']}}-{{near['prev']['id']}}" title="{{near['prev']['article_title']}}"><i class="fas fa-angle-left"></i></a>
+            <a href="/news/{{near['prev']['article_slug']}}-{{near['prev']['id']}}" title="{{near['prev']['article_title']}}">{{near['prev']['article_title']}}</a>
+            {% endif %}
+        </div>
+        <div class="col-md-6 text-right">
+            {% if near['next'] %}
+            <a href="/news/{{near['next']['article_slug']}}-{{near['next']['id']}}" title="{{near['next']['article_title']}}">{{near['next']['article_title']}}</a>
+            <a class="btn" href="/news/{{near['next']['article_slug']}}-{{near['next']['id']}}" title="{{near['prev']['article_title']}}"><i class="fas fa-angle-right"></i></a>
+            {% endif %}
+        </div>
+        <div class="col-md-12"><hr></div>
+    </div>
+    <div class="others row">
+        <div class="col-sm-3 text-uppercase">
+            <b>Others news</b>
+        </div>
+        <ul class="col-sm-9">
+            {% for art in articles %}
+            <li><a href="/news/{{art['article_slug']}}-{{art['id']}}" title="{{art['article_title']}}">{{art['article_title']}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+
+{% endblock %}

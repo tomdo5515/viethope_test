@@ -1,0 +1,23 @@
+{% extends _layout %}
+
+{% block CONTENT %}
+<div class="page-title">
+  <div>
+    <h1><i class="fa fa-folder-open"></i> File manager</h1>
+    <p></p>
+  </div>
+  <div>
+    <ul class="breadcrumb">
+      <li><i class="fa fa-home fa-lg"></i></li>
+      <li><a>File manager</a></li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card" style="height: 70vh;">
+      <iframe width="100%" src="/dashboard/filemanagement" style="border: none; height: 65vh"></iframe>
+    </div>
+  </div>
+</div>
+{% endblock %}

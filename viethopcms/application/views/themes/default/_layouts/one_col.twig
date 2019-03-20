@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include '_layouts/include/header.twig' %}
+<body>
+    <div id="fb-root"></div>
+    <script>(function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v3.1&appId=298478210516449&autoLogAppEvents=1';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+        
+    <div class="container-fluid">
+        {% include '_layouts/include/menu.twig' %}
+    
+        {% block CONTENT %}
+
+        {% endblock CONTENT %}
+        <!-- end block content -->
+    
+        {% include '_layouts/include/footer.twig' %}
+    <!-- SCRIPT -->
+    </div>
+    
+    <!-- LIB -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="/themes/frontend/js/home.js?v=6.5"></script>
+    {% block SCRIPT %}
+    {% endblock SCRIPT %}
+    <!-- end body -->
+    {% if not guest %}
+        <div class="alert alert-warning alert-dismissible show fixed-bottom mb-0 p-4" role="alert">
+            To ensure the best experience with our website, please let us know if you are a:  
+            <a class="btn btn-secondary" href="/student">Student</a>
+            <a class="btn btn-secondary" href="/supporter">Supporter</a>
+            <a class="btn btn-secondary" href="/member">Member</a>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+</body>
+
+</html>

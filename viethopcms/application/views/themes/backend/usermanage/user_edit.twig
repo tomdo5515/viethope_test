@@ -1,0 +1,121 @@
+{% extends _layout %}
+
+{% block CONTENT %}
+
+    <div class="page-title">
+        <div>
+            <h1><i class="fa fa-edit"></i> Edit user</h1>
+            <p>Chào admin!</p>
+        </div>
+        <div>
+            <ul class="breadcrumb">
+                <li><i class="fa fa-home fa-lg"></i></li>
+                <li><a href="/dashboard/usermanage">Quản lý user</a></li>
+                <li>Edit User</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="row">
+        <!-- <form id="user_put" > -->
+            {{form_open('#', 'id = "user_put"')}}
+            <div class="col-md-9">
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group">
+                            <input name="post_user_email" value="{{user.email}}" class="post_user_email form-control" readonly placeholder="Nhập email tại đây">
+                        </div>
+                        <div class="form-group">
+                            <input name="post_username" value="{{user.username}}" class="post_username form-control" readonly placeholder="Nhập username tại đây">
+                        </div>
+                        <div class="form-group">
+                            <input name="post_password" class="post_password form-control" type="password" placeholder="Mật khẩu đăng nhập">
+                        </div>
+                        <div class="form-group">
+                            <input name="post_confirmpassword" class="post_confirmpassword form-control" type="password" placeholder="Nhập lại mật khẩu">
+                        </div>
+                        <div class="form-group">
+                            <select name="post_groups" class="form-control selectpicker post_groups" multiple data-live-search="true" >
+                            {% for group in groups %}
+                                {% set selected = NULL %}
+                                {% for currentg in currentGroups if not selected %}
+                                    <span>test</span>
+                                    {% if group.id == currentg.id %}
+                                        {% set selected = ' selected="selected"' %}
+                                    {% endif %}
+                                {% endfor %}
+                                <option value="{{group['id']}}" {{selected}}>{{group['name']}}</option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="card">
+                    <h5 class="card-title">Info User</h5>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="control-label">First Name</label>
+                            <input name="post_first_name" value="{{user.first_name}}" class="form-control post_first_name" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Last Name</label>
+                            <input name="post_last_name" value="{{user.last_name}}" class="form-control post_last_name" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Phone</label>
+                            <input name="post_phone" value="{{user.phone}}" class="form-control post_phone" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Company</label>
+                            <input name="post_company" value="{{user.company}}" class="post_company form-control" type="text">
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            {# end col-9 #}
+            <div class="col-md-3">
+                <div class="card">
+                    <h5 class="card-title">Action</h5>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div id="loading_fa" class="">
+                                <div class="rect1"></div>
+                                <div class="rect2"></div>
+                                <div class="rect3"></div>
+                                <div class="rect4"></div>
+                                <div class="rect5"></div>
+                            </div>
+                        </div>
+                        <input name="put_id" value="{{user.id}}" class="put_id form-control" type="hidden">
+                        <button id="edit_user" class="update_user btn btn-primary icon-btn" type="button">
+                        <i class="fa fa-paper-plane"></i> Update
+                        </button>                  
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+
+{% block SCRIPTS %}
+<link rel="stylesheet" href="/grocery_crud/plugins/bootstrap-select/css/bootstrap-select.min.css">
+<script type="text/javascript" src="/grocery_crud/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="/grocery_crud/texteditor/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/grocery_crud/texteditor/ckfinder/ckfinder.js"></script>
+<script type="text/javascript" src="/grocery_crud/texteditor/ckfinder/instance_popup.js"></script>
+<script type="text/javascript" src="/grocery_crud/texteditor/ckeditor/adapters/jquery.js"></script>
+<script type="text/javascript" src="/grocery_crud/js/jquery_plugins/config/jquery.ckeditor.config.js"></script>
+<script type="text/javascript" src="/grocery_crud/plugins/datepicker/moment.min.js"></script>
+<script type="text/javascript" src="/themes/backend/js/plugins/sweetalert.min.js"></script>
+<script type="text/javascript" src="/themes/backend/js/plugins/bootstrap-typeahead.min.js"></script>
+<link rel="stylesheet" href="/themes/backend/js/plugins/bootstrapvalidator/css/bootstrapValidator.min.css">
+<script type="text/javascript" src="/themes/backend/js/plugins/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="/themes/backend/js/usermanage.js"></script>
+{% endblock %}

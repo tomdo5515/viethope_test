@@ -1,0 +1,35 @@
+.cover-background{
+    padding: 12rem 8rem 4rem;
+    margin-bottom: 2rem;
+    background-position: center;
+    background-size: 100% auto;
+    
+    h1,h3,h4{
+        width: 100%;
+        text-transform: uppercase;
+        color: #ffffff;
+    }
+
+    h4{
+        font-size: 0.9rem;
+        span{
+            background: #ffffff;
+            padding: 0.25rem 0.35rem;
+            color: #000000;
+        }
+        margin-bottom: 1rem;
+    }
+
+    h3{
+        font-weight: normal;
+        margin-bottom: 0rem;
+    }
+
+    h1{
+        font-weight: bold;
+    }
+}
+
+.static-page{
+    padding: 0rem 8rem;
+}

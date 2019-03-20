@@ -1,0 +1,116 @@
+{% extends '/_layouts/one_col.twig' %} 
+
+{% block CONTENT %}
+
+<section class="row cover-background" style="background-image: url(/themes/frontend/images/news-bg.jpg);">
+    {# <h4><span>{{head['menu']}}</span></h4>
+    <h1>{{head['category']}}</h1> #}
+</section>
+<section class="row">
+    <div class="article-container">
+        <div class="col-12">
+            <div class="jbreadcrumb text-left mb-3">
+                <a href="/">Home</a> / 
+                <span>{{head['menu']}}</span>
+            </div>
+
+            {# <h3>MDP</h3>  #}
+            <h1 class="text-left mb-3 text-uppercase">{{head['category']}}</h1>
+        </div>
+    </div>
+</section>
+<section class="article-container mb-5">
+    <div class="list-news">
+        <div class="row">
+            <div class="primary col-lg-11 col-md-11">
+                {% if articles|length > 0 %}            
+                    {% for article in articles %}
+                        {% if loop.index == 1 %}
+                            <div class="latest-news l-item">
+                                <div class="item-inner col">
+                                    <div class="row">
+                                        <div class="col-md-5 thumbnail">
+                                            <a href="/news/{{article['article_slug']}}-{{article['id']}}" title="{{article['article_title']}}">
+                                                <img src="{{article['thumbnail']}}" alt="{{article['article_title']}}">
+                                            </a>
+                                            <span>{{article['article_date']|date('d/m/Y')}}</span>
+                                        </div>
+                                        <div class="col-md-7 description">
+                                            <h3 class="title text-uppercase">
+                                                <a href="/news/{{article['article_slug']}}-{{article['id']}}" title="{{article['article_title']}}">{{article['article_title']}}</a>
+                                            </h3>
+                                            <div class="row statusbar mb-3">
+                                                <div class="col col-xl-7 tags">
+                                                    {% for tag in article['terms'] if tag['taxonomy'] == 'article_tag' %}
+                                                    {% if loop.first %}
+                                                    Tags:
+                                                    {% else %}
+                                                    ,
+                                                    {% endif %}<a href="/tag/{{tag['slug']}}" title="{{tag['term_name']}}">{{tag['term_name']}}</a>
+                                                    {% endfor %}
+                                                </div>
+                                                <div class="col col-xl-5 text-right font-italic">
+                                                    Post by <a href="/author/{{article['username']}}" title="{{article['first_name']}}">{{article['first_name']}} {{article['last_name']}}</a>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                {{article['article_description']}}
+                                            </p>
+                                            <a class="btn btn-read" href="/news/{{article['article_slug']}}-{{article['id']}}" title="{{article['article_title']}}">Read more</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="l-item">
+                                <div class="item-inner col">
+                                    <div class="row">
+                                        <div class="col-md-4 thumbnail">
+                                            <a href="/news/{{article['article_slug']}}-{{article['id']}}" title="{{article['article_title']}}">
+                                                <img src="{{article['thumbnail']}}" alt="{{article['article_title']}}">
+                                            </a>
+                                        </div>
+                                        <div class="col-md-8 description">
+                                            <div class="row statusbar mb-3">
+                                                <div class="col tags">
+                                                    {{article['article_date']|date('d/m/Y')}}
+                                                    {% for tag in article['terms'] if tag['taxonomy'] == 'article_tag' %}
+                                                    {% if loop.first %}
+                                                     | Tags:
+                                                    {% else %}
+                                                    ,
+                                                    {% endif %}<a href="/tag/{{tag['slug']}}" title="{{tag['term_name']}}">{{tag['term_name']}}</a>
+                                                    {% endfor %}
+                                                </div>
+                                                
+                                                <div class="col text-right font-italic">
+                                                    Post by <a href="/author/{{article['username']}}" title="{{article['first_name']}}">{{article['first_name']}} {{article['last_name']}}</a>
+                                                </div>
+                                            </div>
+                                            <h3 class="title text-hover">
+                                                <a href="/news/{{article['article_slug']}}-{{article['id']}}" title="{{article['article_title']}}">{{article['article_title']}}</a>
+                                            </h3>
+                                            <p>
+                                                {{article['article_description']}}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+
+                    {{paging}}
+
+                {% else %}
+                    <div class="alert alert-light" role="alert">
+                        {{lang('not_have_post')}}
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

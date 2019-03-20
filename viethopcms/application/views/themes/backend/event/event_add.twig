@@ -1,0 +1,189 @@
+{% extends _layout %}
+
+{% block CONTENT %}
+
+    <div class="page-title">
+        <div>
+            <h1><i class="fa fa-edit"></i> Add event</h1>
+            <p></p>
+        </div>
+        <div>
+            <ul class="breadcrumb">
+                <li><i class="fa fa-home fa-lg"></i></li>
+                <li><a href="/dashboard/event">Event</a></li>
+                <li>Add event</li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="row">
+        <form id="article_post" >
+            <div class="col-md-9">
+
+                <div class="card">
+                    <div class="card-body">
+                        
+                        <label class="control-label">Language</label>
+                        <div class="form-group">
+                            <div class="form-group form-group-sm">
+                                <select name="post_language" class="form-control selectpicker post_language" data-live-search="true" >
+                                {% for langs in languages %}
+                                    {% if default_language == langs['language_code'] %}
+                                        <option value="{{langs['language_code']}}" selected>{{langs['name']}}</option>
+                                    {% else %}
+                                        <option value="{{langs['language_code']}}">{{langs['name']}}</option>
+                                    {% endif %}
+                                {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label">Title</label>
+                            <input name="post_article_title" class="post_article_title form-control" type="text" placeholder="Input title here">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Event time</label>
+                            <input name="post_event_date" class="post_event_date form-control datetimepicker" type="text" placeholder="event time">
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Content</label>
+                            <div class="group_ckeditor">
+                                <textarea name="post_article_content" class="post_article_content form-control texteditor" rows="4" placeholder="typing your content"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="card">
+                    <h5 class="card-title">SEO Options</h5>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="control-label">Title</label>
+                            <input name="post_seo_title" class="form-control post_seo_title" type="text"  maxlength="70">
+                            <p>The title display in search engines is limited to 70 chars. If the SEO title is empty the title will be generated based on your title template in your SEO settings.</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Description</label>
+                            <textarea name="post_seo_description" class="form-control post_seo_description" rows="4" maxlength="140"></textarea>
+                            <p>The meta description will be limited to 140 chars. If the meta description is empty the description 
+                                will be generated based on your meta description options in your SEO settings.</p>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Keywords</label>
+                            <input name="post_seo_keywords" class="post_seo_keywords form-control" type="text" maxlength="1000">
+                            <p>Add search keywords and separate tags with commas (,).</p>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            {# end col-9 #}
+            <div class="col-md-3">
+                
+                <div class="card">
+                    <h5 class="card-title">Post event</h5>
+                    <div class="card-body">
+                        <div class="form-group hidden">
+                            <input class="form-control input-sm post_article_password" name="post_article_password" type="text" value="" placeholder="Option password access">
+                            <p>Thêm nếu muốn bài post chỉ được đọc bởi những người có mã mà bạn cung cấp</p>
+                        </div>
+                        <div class="form-group">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <div class="toggle">
+                                        <i class="fa fa-fw fa-lg fa-thumb-tack"></i>
+                                        Highlight
+                                        <label>
+                                            <input class="post_pin" type="checkbox" name="post_pin"><span class="button-indecator"></span>
+                                        </label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fa fa-fw fa-lg fa-check-circle"></i> Tình trạng <b>Bản nháp</b>
+                                </li>
+                                <li>
+                                    <i class="fa fa-fw fa-lg fa-eye"></i> Chế độ xem <b>Tất cả</b>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+
+                    <div class="card-footer">
+                        <div class="form-group">
+                            <div id="loading_fa" class="">
+                                <div class="rect1"></div>
+                                <div class="rect2"></div>
+                                <div class="rect3"></div>
+                                <div class="rect4"></div>
+                                <div class="rect5"></div>
+                            </div>
+                        </div>
+                        <button id="submit_publish" status="publish" class="submit_article btn btn-primary icon-btn" type="button">
+                        <i class="fa fa-paper-plane"></i> Submit
+                        </button>
+                        <button id="submit_draft" status="draft" class="submit_article btn btn-default icon-btn" type="button">Save draft</button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h5 class="card-title">Ảnh đại diện</h5>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="input-group form-line file-select">
+                                <span class="input-group-btn">
+                                    <button class="ckfinder-popup btn btn-default" type="button">
+                                        <i class="glyphicon glyphicon-upload"></i> Select file
+                                    </button>
+                                </span>
+                                <input class="form-control post_thumbnail" name="post_thumbnail" type="text" value="">
+                            </div>
+                            <p>Khuyến khích dùng hình đại diện để bài viết dễ nhận biết hơn</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h5 class="card-title">Tag</h5>
+                    <div class="card-body">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group form-line file-select">
+                                <input class="form-control ajax_tags" name="ajax_tags" type="text" value="" autocomplete="off">
+                                <span class="input-group-btn">
+                                    <button id="ajax_add_tags" class="btn btn-sm btn-default" type="button">
+                                        <i class="fa fa-plus"></i> Add tag
+                                    </button>
+                                </span>
+                            </div>
+                            {# <p class="tag_alert">Phân cách các thẻ bằng dấu phẩy (,).</p> #}
+                        </div>
+                        <div id="post_tags" class="form-group">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+
+{% block SCRIPTS %}
+<link rel="stylesheet" href="/grocery_crud/plugins/bootstrap-select/css/bootstrap-select.min.css">
+<script type="text/javascript" src="/grocery_crud/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+<script type="text/javascript" src="/grocery_crud/texteditor/ckeditor/ckeditor.js"></script>
+<script type="text/javascript" src="/grocery_crud/texteditor/ckfinder/ckfinder.js"></script>
+<script type="text/javascript" src="/grocery_crud/texteditor/ckfinder/instance_popup.js"></script>
+<script type="text/javascript" src="/grocery_crud/texteditor/ckeditor/adapters/jquery.js"></script>
+<script type="text/javascript" src="/grocery_crud/js/jquery_plugins/config/jquery.ckeditor.config.js"></script>
+<script type="text/javascript" src="/grocery_crud/plugins/datepicker/moment.min.js"></script>
+<script type="text/javascript" src="/grocery_crud/plugins/datepicker/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="/grocery_crud/plugins/datepicker/bootstrap-datetimepicker.config.js"></script>
+<script type="text/javascript" src="/themes/backend/js/plugins/sweetalert.min.js"></script>
+<script type="text/javascript" src="/themes/backend/js/plugins/bootstrap-typeahead.min.js"></script>
+<link rel="stylesheet" href="/themes/backend/js/plugins/bootstrapvalidator/css/bootstrapValidator.min.css">
+<script type="text/javascript" src="/themes/backend/js/plugins/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="/themes/backend/js/event.js"></script>
+{% endblock %}

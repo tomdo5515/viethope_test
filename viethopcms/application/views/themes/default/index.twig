@@ -1,0 +1,442 @@
+{% extends '/_layouts/one_col.twig' %} 
+
+{% block CONTENT %}
+
+<section class="row first home-banner our-program mb-20">
+        <div class="home-container leftview">
+            <div class="leftview-inner-wrap">
+                <div class="leftview-inner">
+                    <div class="home-title">
+                        {{options['tagline_'~language]}}
+                        <div class="home-title-top">
+                            <a class="btn btn-outline-light text-uppercase btn-about" href="/about-viethope-4/mission-strategy-6">{{lang('btn_moreabout')}}</a>
+                        </div>
+                    </div>
+                </div>
+                {% if pins_news %}
+                <section class="news-pin-inner d-none d-sm-none d-md-block">
+                    <div class="home-container leftview">
+                        <div class="pin-news">
+                            <div class="pin-news-row">
+                                <div class="row">
+                                    {% for new in pins_news %}
+                                        <div class="column d-flex">
+                                            <div class="column-inner">
+                                                <div class="cate-head">
+                                                    <span>{{new['terms'][0]['term_name']}}</span>
+                                                </div>
+                                                <p class="status">
+                                                    <span>{{new['article_date']|date("F d Y")}}</span> by {{new['first_name']}} {{new['last_name']}}
+                                                </p>
+                                                <h3 class="text-uppercase">{{shortens(new['article_title'], 10)}}</h3>
+                                                <p>{{shortens(new['article_description'], 20)}}</p>
+                                                <a href="/news/{{new['article_slug']}}-{{new['id']}}" title="{{new['article_title']}}" class="btn btn-read">{{lang('read_more')}}</a>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {% endif %}
+                <div class="scroll-down d-none d-sm-none d-md-block" style="background-image: none;">
+                    <span>&nbsp;</span>
+                    <span>&nbsp;</span>
+                    <span>&nbsp;</span>
+                </div>
+            </div>
+        </div>
+       
+</section>
+
+{% if pins_news %}
+<section class="row second our-program d-block d-sm-none d-md-none">
+    <div class="home-container leftview">
+        <div class="pin-news">
+            <div class="pin-news-row">
+                <div class="row">
+                    {% for new in pins_news %}
+                        <div class="column d-flex">
+                            <div class="column-inner">
+                                <div class="cate-head">
+                                    <span>{{new['terms'][0]['term_name']}}</span>
+                                </div>
+                                <p class="status">
+                                    <span>{{new['article_date']|date("F d Y")}}</span> by {{new['first_name']}} {{new['last_name']}}
+                                </p>
+                                <h3 class="text-uppercase">{{shortens(new['article_title'], 10)}}</h3>
+                                <p>{{shortens(new['article_description'], 20)}}</p>
+                                <a href="/news/{{new['article_slug']}}-{{new['id']}}" title="{{new['article_title']}}" class="btn btn-read">{{lang('read_more')}}</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<section class="row report-program">
+    <div class="report-program-content">
+        <div class="head home-container">
+            <h4>{{lang('vh_believes')}}</h4>
+            <span>{{lang('vh_believes_sup')}}</span>
+            <h3>our programs</h3>
+        </div>
+        <div class="col-md-10 carousel-program">
+            <div class="row list-programes">
+                {% if programs %}
+                <div class="programes owl-carousel">
+                    {% for pro in programs %}
+                    <div class="programe col">
+                        <div class="photo">
+                            <img src="{{pro['thumbnail']}}" alt="{{pro['title']}}">
+                        </div>
+                        <h4>{{pro['acronym']}}</h4>
+                        <h5>{{pro['title']}}</h5>
+                        <hr>
+                        {% if language == 'english' %}
+                        <p class="description">{{pro['description_english']}}</p>
+                        {% else %}
+                        <p class="description">{{pro['description_vietnamese']}}</p>
+                        {% endif %}
+                        <hr>
+                        <div class="report">
+                            <p class="number">{{pro['total_funded']}}</p>
+                            <p>FUNDED (USD)</p>
+                            <p class="number">{{pro['num_program']}}</p>
+                            <p>Students</p>
+                        </div>
+                        <a class="btn btn-read" href="{{pro['hyperlink']}}">{{lang('read_more')}}</a>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="home-container report-program-bottom">
+    <div class="row" style="justify-content: center;">
+        <div class="report-text-1 d-block d-sm-none">
+                <h5>{{lang('w_y_h')}}</h5>
+                <p>{{lang('w_f')}}</p>
+        </div>
+        <div class="d-flex flex-row justify-content-start report-text">
+            <div class="report-text-1 d-none d-sm-none d-md-block">
+                <h5>{{lang('w_y_h')}}</h5>
+                <p>{{lang('w_f')}}</p>
+            </div>
+            <div class="report-text-2">
+                <div class="d-flex">
+                    <div class="photo-text">
+                        <img src="/themes/frontend/images/leaf1.png" alt="">
+                        <span>40</span>
+                    </div>
+                    <p>{{lang('p_f')}} </p>
+                </div>
+            </div>
+            <div class="report-text-2">
+                <div class="d-flex">
+                    <div class="photo-text">
+                        <img src="/themes/frontend/images/leaf2.png" alt="">
+                        <span>1200</span>
+                    </div>
+                    <p>{{lang('students')}}</p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if events|length > 0 %}
+
+<section>
+    <div class="row cd-horizontal-timeline">
+        <div class="timeline">
+            <div class="events-wrapper">
+                <div class="events">
+                    <ol>
+                        {% for ev in events %}
+                            {% if loop.index == 1 %}
+                                <li>
+                                    <a href="#0" data-date="{{ev['event_time']|date('d/m/Y')}}" class="adate selected">{{ev['event_time']|date('M Y')}}</a>
+                                    <div class="timeline-desc">
+                                        <p><a href="/news/viethope-s-key-milestones-89" title="">
+                                            {% if language == 'english' %}
+                                                {{shortens(ev['description_english'], 20)}}
+                                            {% else %}
+                                                {{shortens(ev['description_vietnamese'], 20)}}
+                                            {% endif %}
+                                        </a></p>
+                                    </div>
+                                </li>
+                            {% else %}
+                                <li>
+                                    <a href="#0" data-date="{{ev['event_time']|date('d/m/Y')}}" class="adate">{{ev['event_time']|date('M Y')}}</a>
+                                    <div class="timeline-desc">
+                                        <p><a href="/news/viethope-s-key-milestones-89" title="">
+                                            {% if language == 'english' %}
+                                                {{shortens(ev['description_english'], 20)}}
+                                            {% else %}
+                                                {{shortens(ev['description_vietnamese'], 20)}}
+                                            {% endif %}
+                                        </a></p>
+                                    </div>
+                                </li>
+                            {% endif %}
+                            
+                        {% endfor %}
+                    </ol>
+    
+                    <span class="filling-line" aria-hidden="true"></span>
+                </div> <!-- .events -->
+            </div> <!-- .events-wrapper -->
+                
+            <ul class="cd-timeline-navigation">
+                <li><a href="#0" class="prev inactive">Prev</a></li>
+                <li><a href="#0" class="next">Next</a></li>
+            </ul> <!-- .cd-timeline-navigation -->
+        </div> <!-- .timeline -->
+    </div>
+    
+</section>
+
+{% endif %}
+
+{% if scholars|length > 0 %}
+
+<section class="row featured-story">
+    <style type="text/css">
+        .uppercase-text {
+            text-transform: uppercase;
+        }
+        
+        .history-owl {
+            padding-bottom: 100px;
+        }
+
+        .extention-carousel-outner{
+            width: 80%;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .extention-carousel .slider-content h4{
+            font-size: 24px;
+        }
+
+        .extention-carousel .slider-content .thumb {
+            margin-top: 35px;
+        }
+
+        .extention-carousel .slider-content a {
+            color: #4c893a;
+            display: block;
+            margin-top: 2rem;
+        }
+        
+        .history-owl .carol-bar {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .history-owl .carol-bar .btn {
+            width: 40px;
+            height: 40px;
+            margin: 0 2px;
+            font-size: 20px;
+            opacity: 1;
+        }
+
+        .owl-carousel .owl-stage, .owl-carousel .owl-item{
+            display: flex;
+        }
+
+        .extention-carousel{
+            width: 100%;
+            margin: 0 auto;
+            
+        }
+
+        .featured-story .owl-nav{
+            text-align: center;
+        }
+
+        .featured-story .owl-nav button.owl-prev, .featured-story .owl-nav button.owl-next{
+            font-size: 2rem;
+            font-size: 50px;
+            color: white;
+            width: 40px;
+            line-height: 34px;
+            background: #4c893a;
+            padding: 0px 0px 7px !important;
+            margin: 25px 2px;
+            opacity: 0.5;
+        }
+
+        .featured-story .owl-nav button.owl-prev:hover, .featured-story .owl-nav button.owl-next:hover{
+            opacity: 1;
+        }
+
+        .featured-story .owl-nav button.owl-prev{
+            left: 0px;
+        }
+
+        .featured-story .owl-nav button.owl-next{
+            right: 0px;
+        }
+
+        .extention-carousel .slider-content{
+            display: flex;
+            position: relative;
+        }
+
+        .extention-carousel .slider-content .thumb span{
+            width: 90px;
+            height: 90px;
+            border-radius: 90px;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .extention-carousel .slider-content .desc{
+            padding: 15px 20px;
+        }
+
+        .extention-carousel .slider-content .rem{
+            position: absolute;
+            bottom: 25px;
+            text-align: center;
+            left: 0px;
+        }
+
+        .slider-content-inner {
+            background: #fffbb2;
+            margin: 0 5px;
+            border-radius: 5px;
+            padding: 50px 15px;
+            text-align: center;
+        }
+
+        @media (min-width: 576px){
+            
+        }
+        
+        @media (min-width: 768px){
+            .extention-carousel .slider-content .thumb img {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 992px){
+            .extention-carousel{
+            }
+            .extention-carousel .slider-content .thumb span{
+                width: 10rem;
+                height: 10rem;
+                border-radius: 10rem;
+                overflow: hidden;
+                display: inline-block;
+            }
+        }
+        @media (min-width: 1400px){
+            .extention-carousel{
+            }
+        }
+    </style>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $(".extention-carousel").owlCarousel({
+                loop:true,
+                responsiveClass:true,
+                autoplay: true,
+                nav:true,
+                responsive:{
+                    1:{
+                        items:1,
+                        margin: 0,
+                        nav:false,
+                    },
+                    600:{
+                        items:2,
+                        margin: 20
+                    },
+                    1250:{
+                        items:3,
+                        margin: 10
+                    }
+                }
+            });
+        });
+    </script>
+    <div class="home-container history-owl">
+        <div class="extention-carousel-outner">
+            <div class="extention-carousel owl-carousel">
+                {% for item in scholars %}
+                <div class="slider-content">
+                    <div class="slider-content-inner">
+                        <h4 class="uppercase-text">{{lang('featured_story')}}</h4>
+                        <div class="thumb"><span><img alt="photo1" src="{{item['thumbnail']}}" /></span></div>
+                        <div class="desc">
+                            <p class="uppercase-text font-bold-16">{{item['article_title']}}</p>
+                            <p>{{item['article_description']}}</p>
+                        </div>
+                        <div class="w-100 rem">
+                            <a href="#" data-toggle="modal" data-target="#extentions{{item['id']}}" title="">{{lang('read_more')}}</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% for cl in scholars %}
+            <div class="modal fade viethope-modal" id="extentions{{cl['id']}}" tabindex="-1" role="dialog" aria-labelledby="{{cl['article_title']}}" aria-hidden="true" >
+                {{cl['article_content']}}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+{% endif %}
+
+<section class="row cover-footer">
+    <div class="home-container">
+        <div class="cover-content">
+            <h5>You can make a difference</h5>
+            <p>Become a member, donate, fundraise, volunteer, and/or intern with us</p>
+            <div>
+                <a class="btn getinvolved text" href="/get-involved-5">Get Involved</a>
+            </div>
+        </div>
+    </div>  
+</section>
+
+{% if partners %}
+<section class="row partner-list">
+    <div class="home-container">
+        <div class="w-100">
+            <div class="partner-carousel owl-carousel">
+                {% for partner in partners %}
+                <div>
+                    <a target="_blank" href="{{partner['link']}}" class="partner-item"><img class="w-100" src="{{partner['thumbnail']}}" alt="{{partner['name']}}"></a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block SCRIPT %}
+<script src="/themes/frontend/js/main.js?v=2"></script>
+<script src="/themes/frontend/js/plugins/moment.min.js"></script>
+{% endblock SCRIPT %}

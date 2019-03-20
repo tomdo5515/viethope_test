@@ -1,0 +1,172 @@
+{% extends '/_layouts/one_col.twig' %}
+
+{% block CONTENT %}
+
+<section class="row cover-background" style="background-image: url('/uploads/images/designpack/bg-head-transparency-contact-donate.jpg');">
+    {# <h4><span>CONTACT</span></h4>
+    <h3>MDP</h3>
+    <h1>Get in touch with us</h1> #}
+</section>
+<section class="row">
+    <div class="article-container">
+        <div class="col-12">
+            <div class="jbreadcrumb text-center mb-3">
+                <a href="/">Home</a> / 
+                <span>CONTACT</span>
+            </div>
+            {# <h3>MDP</h3>  #}
+            <h1 class="text-center mt-2 mb-5 text-uppercase">Get in touch with us</h1>
+        </div>
+    </div>
+</section>
+<section class="row">
+    <style type="text/css">
+        .contact h2 {
+            font-weight: 300;
+            font-size: 3.7rem;
+        }
+
+        .contact h3 {
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 3rem;
+        }
+
+        .contact hr {
+            border-width: 5px;
+            border-color: #9dc73c;
+            margin: 0 -15px;
+        }
+        .form-contact{
+            background: #f3f7fa;
+            padding: 30px 0px;
+        }
+        .contact .alert-secondary {
+            color: #fe0000;
+            background-color: #ffe5e5;
+            border-color: #ffe5e5;
+        }
+        .contact label span{
+            color: #ff0000;
+        }
+        .contact .form-control{
+            border-radius:unset;
+        }
+        .contact .form-control:active, .contact .form-control:focus{
+            box-shadow: none;
+            border-color: #fe0000;
+        }
+        .contact .btn {
+            padding: 6px 30px;
+            background: #898989;
+            border: #898989;
+        }
+        .contact .btn-primary {
+            color: #fff;
+            background-color: #4c893a;
+            border-color: #4c893a;
+            margin-right: 15px;
+        }
+    </style>
+    <div class="article-container mb-5 contact">
+        <div class="col-12">
+        <h2 class="text-uppercase mb-3">We'd love to hear from you</h2>
+        <div class="col-md-7">
+            <div class="row">
+                {# <img alt="" src="/uploads/images/icon-page.jpg" style="float: left;"> #}
+                <span style="font-size:16px;padding-top: 15px;">USA: 340 S Lemon Ave #9666 Walnut, CA 91789, USA</span>
+
+            </div>
+
+            <div class="row mb-4">
+                {# <img alt="" src="/uploads/images/icon-page.jpg" style="float: left;"> #}
+                <span style="font-size:16px;padding-top: 15px;">VIETNAM: 11 Le Ngo Cat St., Dist. 3, Hochiminh City,
+                    Vietnam</span>
+            </div>
+
+            <hr>
+            <div class="row form-contact">
+                <div class="col-md-10 offset-md-1">
+                    {% if validate %}
+                        <div class="alert alert-secondary" role="alert">
+                            {{validate}}
+                        </div>
+                    {% endif %}
+                    
+                    {{form_open('contact','id=contactform')}}
+                        <div class="form-group">
+                            <label for="ipname">Your name <span>*</span></label>
+                            <input name="name" type="text" class="form-control" class="ipname" id="ipname" placeholder="Enter name">
+                        </div>
+                        <div class="form-group">
+                            <label for="ipphone">Your phone <span>*</span></label>
+                            <input name="phone" type="text" class="form-control" class="ipphone" id="ipphone" placeholder="Enter phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="ipmail">Your email <span>*</span></label>
+                            <input name="email" type="email" class="form-control" class="ipmail" id="ipmail" aria-describedby="emailHelp" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="iptextair">Your message <span>*</span></label>
+                            <textarea name="message" class="form-control" class="iptextair" id="iptextair" rows="5"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            {{recapcha}}
+                        </div>
+                        <input type="hidden" name="xcontact" value="xcontact">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                        <button class="btn btn-secondary">Cancel</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+	</div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block SCRIPT %}
+<link rel="stylesheet" href="/themes/frontend/js/plugins/bootstrapvalidator/css/bootstrapValidator.min.css">
+<script type="text/javascript" src="/themes/frontend/js/plugins/bootstrapvalidator/js/bootstrapValidator.min.js"></script>
+
+<script>
+    $('#contactform').bootstrapValidator({
+        fields: {
+            name: {
+                validators: {
+                    notEmpty: {
+                        message: 'Name required'
+                    }
+                }
+            },
+            phone: {
+                validators: {
+                    notEmpty: {
+                        message: 'Phone number required'
+                    }
+                }
+            },
+            email: {
+                validators: {
+                    notEmpty: {
+                        message: 'Email required'
+                    },
+                    emailAddress: {
+                        message: 'Value is not a valid email address'
+                    }
+                }
+            },
+            message: {
+                validators: {
+                    notEmpty: {
+                        message: 'Message required'
+                    }
+                }
+            }
+        }
+    });
+
+</script>
+{% endblock %}

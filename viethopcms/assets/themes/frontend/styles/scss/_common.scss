@@ -1,0 +1,43 @@
+.container-fluid{
+    max-width: 1920px;
+    margin: 0px auto;
+    position: relative;
+}
+
+h1.primary{
+    span{
+        display: block;
+        font-weight: normal;
+    }
+    color: #fff;
+}
+
+img.background{
+    width: 100%;
+    max-width: 1920px;
+    position: absolute;
+}
+
+section.first{
+    min-height: 500px;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.btn-read, .btn-back, .btn-next{
+    background: #4c893a;
+    color:#ffffff; 
+    padding: 0.1rem 0.5rem;
+}
+
+.btn-read{
+    padding: 0.2rem 0.5rem;
+    &:hover{
+        color: #cccccc;
+    }
+}
+
+.btn-disabled{
+    background: rgba(76, 137, 58, 0.5);
+    cursor: unset !important;
+}
