@@ -11,4 +11,4 @@ RewriteRule ^(grocery_crud\/(.*\.(css|js|png|jpg|woff|json)))$ /assets/$1 [NC,L]
 RewriteRule ^(themes\/(.*\.(css|js|png|jpg|woff|woff2)))$ /assets/$1 [NC,L]
 RewriteRule ^(uploads\/(.*\.(png|jpg)))$ /assets/$1 [NC,L]
 
-RewriteRule ^(.*)$ /assets/index.php/$1 [L,QSA]
+RewriteRule ^(.*)$ /assets/index.php?/$1 [L,QSA]
